@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app
+  namespace: monitoring
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spring-boot-app
+  template:
+    metadata:
+      labels:
+        app: spring-boot-app
+    spec:
+      containers:
+        - name: spring-boot-app
+          image: docker.io/library/apibankingmanager:jdk
+          ports:
+            - containerPort: 8080  # Adjust the port to match your Spring Boot app's configuration
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: default  # Set your desired Spring profile
+#          livenessProbe:
+#            httpGet:
+#              path: /health
+#              port: 8080
+#          readinessProbe:
+#            httpGet:
+#              path: /health
+#              port: 8080

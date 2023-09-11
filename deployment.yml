@@ -23,6 +23,7 @@ spec:
         prometheus.io/scrape: "true"
         prometheus.io/port: "9090"
     spec:
+      serviceAccountName: prometheus
       containers:
         - name: prometheus
           image: prom/prometheus
@@ -54,4 +55,4 @@ spec:
 
         - name: prometheus-storage-volume
           persistentVolumeClaim:
-            claimName: pvc-local-data
+            claimName: pvc-local-data2
